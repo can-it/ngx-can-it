@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NgxCanItService } from './ngx-can-it.service';
+import { CanItService } from './can-it.service';
 
 describe('NgxCanItService', () => {
-  let service: NgxCanItService;
+  let service: CanItService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NgxCanItService);
+    service = TestBed.inject(CanItService);
   });
 
   it('should be created', () => {
