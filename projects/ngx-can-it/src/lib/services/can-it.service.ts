@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { PermissionsStore } from './permissions-store.service';
 import { of, switchMap } from 'rxjs';
 import PermissionsState from '../types/permissions-state';
-import { Request } from '../types/permission';
+import { Permission, Request } from '../types/permission';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,21 @@ export class CanItService {
     );
   }
 
-  private allow(state: PermissionsState, [reqAction, reqRi]: Request) {
-    // currently, it only checks if the exactly provided have the action and ri in provided permissions or not
-    // We can support Regex check in the future.
-    return !!state.allow.find(([action, ri]) => reqAction === action && reqRi === ri)
+  private allow(state: PermissionsState, request: Request) {
+    if (state.deny?.find(p => this.isMatchPermission(request, p))) {
+      return false;
+    }
+
+    return !!state.allow.find(p => this.isMatchPermission(request, p));
+  }
+
+  /**
+   * This function verifies whether the provided request has access to a specific permission.
+   * Note: Currently, it only supports exact matching, and Regex matching will be supported in the later version.
+   */
+  private isMatchPermission(request: Request, permission: Permission) {
+    const [reqAction, reqRi] = request;
+    const [action, ri] = permission;
+    return reqAction === action && reqRi === ri;
   }
 }
