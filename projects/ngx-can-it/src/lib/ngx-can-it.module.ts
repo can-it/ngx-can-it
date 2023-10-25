@@ -17,10 +17,10 @@ import { CanItService } from './services/can-it.service';
     CanItPipe
   ]
 })
-export class CanItModule {
-  public static forNewScope(): ModuleWithProviders<CanItModule> {
+export class NgxCanItModule {
+  public static forNewScope(): ModuleWithProviders<NgxCanItModule> {
     return {
-      ngModule: CanItModule,
+      ngModule: NgxCanItModule,
       providers: [
         PermissionsStore,
         
@@ -29,9 +29,9 @@ export class CanItModule {
     }
   }
 
-  public static forChild(): ModuleWithProviders<CanItModule> {
+  public static forChild(): ModuleWithProviders<NgxCanItModule> {
     return {
-      ngModule: CanItModule,
+      ngModule: NgxCanItModule,
       providers: []
     }
   }

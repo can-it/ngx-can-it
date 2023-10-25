@@ -2,7 +2,7 @@
  * Public API Surface of ngx-can-it
  */
 
-export * from './lib/can-it.module';
+export * from './lib/ngx-can-it.module';
 
 export * from './lib/directives/can-it.directive';
 
