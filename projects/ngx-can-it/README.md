@@ -1,24 +1,70 @@
 # NgxCanIt
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+NgxCanIt is an Angular library that provides an easy and efficient way to implement authorization in your application. With NgxCanIt, you can quickly integrate complex authorization scenarios into your app in just a few minutes.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name --project ngx-can-it` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-can-it`.
-> Note: Don't forget to add `--project ngx-can-it` or else it will be added to the default project in your `angular.json` file. 
+- Simplified authorization implementation: NgxCanIt simplifies the process of adding authorization functionality to your Angular app with the provided `CanItPipe` and `CanItDirective`.
+- Support for nested authorization scenarios: Use `NgxCanIt.forNewScope()` to create a new authorization scope, which helps in cases where the app has multiple authorization contexts.
 
-## Build
+## Installation
 
-Run `ng build ngx-can-it` to build the project. The build artifacts will be stored in the `dist/` directory.
+To install NgxCanIt, you can use npm, yarn, or pnpm. Run one of the following commands in your project directory:
 
-## Publishing
+```shell
+npm install ngx-can-it
+```
 
-After building your library with `ng build ngx-can-it`, go to the dist folder `cd dist/ngx-can-it` and run `npm publish`.
+```shell
+yarn add ngx-can-it
+```
 
-## Running unit tests
+```shell
+pnpm add ngx-can-it
+```
 
-Run `ng test ngx-can-it` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
 
-## Further help
+1. Import the `NgxCanItModule` into your Angular application's module:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```typescript
+import { NgxCanItModule } from 'ngx-can-it';
+
+@NgModule({
+  imports: [
+    // ...
+    NgxCanItModule.forNewScope(),
+    // ...
+  ],
+})
+export class AppModule { }
+```
+
+2. Implement authorization logic in your component:
+
+```typescript
+import { Component } from '@angular/core';
+import { NgxCanItService } from 'ngx-can-it';
+
+@Component({
+  selector: 'app-my-component',
+  template: `
+    <div *canIt="['view', 'user']">
+      <!-- Content visible to users with [view, user] permission -->
+    </div>
+    <div *canIt="['view', 'products']">
+      <!-- Content visible to users with [view, products] permission -->
+    </div>
+  `,
+})
+export class MyComponent {
+  constructor(private canItService: NgxCanItService) {}
+
+  // Check user permissions
+  checkPermissions() {
+    const canViewUser$ = this.canItService.can(['view', 'user']);
+    const canDeleteUser$ = this.canItService.can(['delete', 'user']);
+    // ...
+  }
+}
+```
