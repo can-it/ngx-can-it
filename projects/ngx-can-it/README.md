@@ -4,8 +4,8 @@ NgxCanIt is an Angular library that provides an easy and efficient way to implem
 
 ## Features
 
-- Simplified authorization implementation: NgxCanIt simplifies the process of adding authorization functionality to your Angular app with the provided `CanItPipe` and `CanItDirective`.
-- Support for nested authorization scenarios: Use `NgxCanIt.forNewScope()` to create a new authorization scope, which helps in cases where the app has multiple authorization contexts.
+- Simplified authorization implementation: NgxCanIt simplifies the process of adding authorization functionality to your Angular app with the provided `CanItPipe`, `CanItDirective`, etc..
+- Support for nested authorization scenarios: Use `NgxCanItModule.forNewScope()` to create a new authorization scope, which helps in cases where the app has multiple authorization contexts.
 
 ## Installation
 
@@ -40,30 +40,73 @@ import { NgxCanItModule } from 'ngx-can-it';
 export class AppModule { }
 ```
 
-2. Implement authorization logic in your component:
+**Notice**:
+You can import this NgModule multiple times by using `NgxCanItModule.forNewScope()` and `NgxCanItModule.forChild()`.
+- `forNewScope()` creates a new permissions state. You have to use the `PermissionsStore` to set the permissions for this module, and all the directives, pipes, and components will use this state in their logic.
+- `forChild()` is used to register for submodules and lazy-loaded submodules when you want to reuse the parent permissions state module.
+
+2. Use the `PermissionsStore` to set the permissions for the current user:
 
 ```typescript
 import { Component } from '@angular/core';
-import { NgxCanItService } from 'ngx-can-it';
+import { PermissionsStore } from 'ngx-can-it';
 
 @Component({
-  selector: 'app-my-component',
+  selector: 'app-component',
   template: `
-    <div *canIt="['view', 'user']">
-      <!-- Content visible to users with [view, user] permission -->
-    </div>
-    <div *canIt="['view', 'products']">
-      <!-- Content visible to users with [view, products] permission -->
-    </div>
+    <!-- your component template -->
+    <app-products-component></app-products-component>
   `,
 })
-export class MyComponent {
-  constructor(private canItService: NgxCanItService) {}
+export class AppComponent implements OnInit {
+  constructor(private permissionsStore: PermissionsStore) {}
+
+  ngOnInit(): void {
+    this.permissionsStore.update({
+      allow: [
+        ['edit', 'products'],
+        ['view', 'users'],
+      ]
+    });
+  }
+}
+```
+
+3. Implement authorization logic in your component using the `canIt` pipe, `*canIt` directive, or `CanItService`:
+
+```typescript
+import { Component } from '@angular/core';
+import { CanItService } from 'ngx-can-it';
+
+@Component({
+  selector: 'app-products-component',
+  template: `
+    <!-- Using *canIt directive -->
+    <div *canIt="['edit', 'products'] else notAuthorized">
+      <ul>
+        <li>product 1</li>
+        <li>product 2</li>
+        <li>product 3</li>
+      </ul>
+    </div>
+    <ng-template #notAuthorized>
+      You cannot access this content.
+    </ng-template>
+  
+
+    <!-- Using canIt pipe -->
+    <button [class.inactive]="!(['create', 'products'] | canIt | async)">
+      New Product
+    </button>
+  `,
+})
+export class ProductsComponent {
+  constructor(private canItService: CanItService) {}
 
   // Check user permissions
-  checkPermissions() {
-    const canViewUser$ = this.canItService.can(['view', 'user']);
-    const canDeleteUser$ = this.canItService.can(['delete', 'user']);
+  canViewUsers() {
+    // using CanItService
+    return this.canItService.can(['view', 'users']);
     // ...
   }
 }
