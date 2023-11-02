@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { CanItService } from './can-it.service';
 import { PermissionsStore } from './permissions-store.service';
 import { Permission } from '../types/permission';
+import { ACTION_OPERATOR, RI_OPERATOR } from '../constants/token';
 
 describe('NgxCanItService', () => {
   let service: CanItService;
@@ -21,7 +22,13 @@ describe('NgxCanItService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CanItService, PermissionsStore]
+      providers: [
+        CanItService,
+        PermissionsStore,
+
+        { provide: ACTION_OPERATOR, useValue: { isMatch: (a: string, b: string) => a === b } },
+        { provide: RI_OPERATOR, useValue: { isMatch: (a: string, b: string) => a === b } }
+      ]
     });
     
     service = TestBed.inject(CanItService);

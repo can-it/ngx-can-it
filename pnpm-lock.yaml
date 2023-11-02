@@ -29,6 +29,9 @@ dependencies:
   '@angular/router':
     specifier: ^16.2.0
     version: 16.2.10(@angular/common@16.2.10)(@angular/core@16.2.10)(@angular/platform-browser@16.2.10)(rxjs@7.8.1)
+  '@can-it/core':
+    specifier: link:..\core
+    version: link:../core
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1

@@ -4,6 +4,8 @@
 
 export * from './lib/ngx-can-it.module';
 
+export * from './lib/constants/token';
+
 export * from './lib/directives/can-it.directive';
 export * from './lib/pipes/can-it.pipe';
 

@@ -1,38 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { PermissionsStore } from './permissions-store.service';
-import { of, switchMap } from 'rxjs';
-import PermissionsState from '../types/permissions-state';
-import { Permission, Request } from '../types/permission';
+import { Observable, map } from 'rxjs';
+import { Request } from '../types/permission';
+import { ActionOperator, CanIt, RiOperator } from '@can-it/core';
+import { ACTION_OPERATOR, RI_OPERATOR } from '../constants/token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanItService {
-  constructor(
-    private permissionsStore: PermissionsStore
-  ) {}
+  private canIt$: Observable<CanIt>;
 
-  can(request: Request) {
-    return this.permissionsStore.get().pipe(
-      switchMap(state => of(this.allow(state, request)))
+  constructor(
+    @Inject(ACTION_OPERATOR) actionOperator: ActionOperator,
+    @Inject(RI_OPERATOR) riOperator: RiOperator,
+    permissionsStore: PermissionsStore,
+  ) {
+    this.canIt$ = permissionsStore.get().pipe(
+      map(state => new CanIt(state, actionOperator, riOperator))
     );
   }
 
-  private allow(state: PermissionsState, request: Request) {
-    if (state.deny?.find(p => this.isMatchPermission(request, p))) {
-      return false;
-    }
-
-    return !!state.allow.find(p => this.isMatchPermission(request, p));
-  }
-
-  /**
-   * This function verifies whether the provided request has access to a specific permission.
-   * Note: Currently, it only supports exact matching, and Regex matching will be supported in the later version.
-   */
-  private isMatchPermission(request: Request, permission: Permission) {
-    const [reqAction, reqRi] = request;
-    const [action, ri] = permission;
-    return reqAction === action && reqRi === ri;
+  can(request: Request) {
+    return this.canIt$.pipe(
+      map(canIt => canIt.allowTo(...request))
+    );
   }
 }
