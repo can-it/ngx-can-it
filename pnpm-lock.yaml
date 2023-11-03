@@ -32,6 +32,9 @@ dependencies:
   '@can-it/core':
     specifier: link:..\core
     version: link:../core
+  ngx-can-it:
+    specifier: link:dist\ngx-can-it
+    version: link:dist/ngx-can-it
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1
