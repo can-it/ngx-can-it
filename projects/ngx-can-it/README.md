@@ -2,6 +2,9 @@
 
 NgxCanIt is an Angular library that provides an easy and efficient way to implement authorization in your application. With NgxCanIt, you can quickly integrate complex authorization scenarios into your app in just a few minutes.
 
+## ⛔ Project Status
+The project is still under development, which means there will be frequent breaking changes in versions 0.x.x. Please wait until version 1.0.0 for a more stable release.
+
 ## Features
 
 - Simplified authorization implementation: NgxCanIt simplifies the process of adding authorization functionality to your Angular app with the provided `CanItPipe`, `CanItDirective`, etc..
