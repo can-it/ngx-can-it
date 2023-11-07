@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { PermissionsStore } from './permissions-store.service';
 import { Observable, map } from 'rxjs';
 import { Request } from '../types/permission';
-import { ACTION_OPERATOR, RI_OPERATOR } from '../constants/token';
+import { ACTION_COMPARATOR, RI_COMPARATOR } from '../constants/token';
 import { CanIt, Comparator } from '@can-it/core';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class CanItService {
   private canIt$: Observable<CanIt>;
 
   constructor(
-    @Inject(ACTION_OPERATOR) actionComparator: Comparator,
-    @Inject(RI_OPERATOR) riComparator: Comparator,
+    @Inject(ACTION_COMPARATOR) actionComparator: Comparator,
+    @Inject(RI_COMPARATOR) riComparator: Comparator,
     permissionsStore: PermissionsStore,
   ) {
     this.canIt$ = permissionsStore.get().pipe(

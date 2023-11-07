@@ -30,8 +30,8 @@ dependencies:
     specifier: ^16.2.0
     version: 16.2.10(@angular/common@16.2.10)(@angular/core@16.2.10)(@angular/platform-browser@16.2.10)(rxjs@7.8.1)
   '@can-it/core':
-    specifier: link:..\core
-    version: link:../core
+    specifier: ^0.4.0
+    version: 0.4.0
   ngx-can-it:
     specifier: link:dist\ngx-can-it
     version: link:dist/ngx-can-it
@@ -1692,6 +1692,10 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
     dev: true
+
+  /@can-it/core@0.4.0:
+    resolution: {integrity: sha512-YBySKCawDrPG58520cMHwfmdXK8ulJOmx1sTkz9wJMWblxPs7mXwXHmDqZHV4vu+miSoAHH88OBh17+HNk5cCw==}
+    dev: false
 
   /@colors/colors@1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}

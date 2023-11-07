@@ -3,7 +3,7 @@ import { CanItDirective } from './directives/can-it.directive';
 import { CanItPipe } from './pipes/can-it.pipe';
 import { PermissionsStore } from './services/permissions-store.service';
 import { CanItService } from './services/can-it.service';
-import { ACTION_OPERATOR, RI_OPERATOR } from './constants/token';
+import { ACTION_COMPARATOR, RI_COMPARATOR } from './constants/token';
 import { Comparator, ExactComparator } from '@can-it/core';
 
 @NgModule({
@@ -21,8 +21,8 @@ import { Comparator, ExactComparator } from '@can-it/core';
 })
 export class NgxCanItModule {
   public static forNewScope(
-    actionOperator: Comparator = new ExactComparator(),
-    riOperator: Comparator = new ExactComparator()
+    actionComparator: Comparator = new ExactComparator(),
+    riComparator: Comparator = new ExactComparator()
   ): ModuleWithProviders<NgxCanItModule> {
     return {
       ngModule: NgxCanItModule,
@@ -31,8 +31,8 @@ export class NgxCanItModule {
         
         CanItService,
 
-        { provide: ACTION_OPERATOR, useValue: actionOperator },
-        { provide: RI_OPERATOR, useValue: riOperator }
+        { provide: ACTION_COMPARATOR, useValue: actionComparator },
+        { provide: RI_COMPARATOR, useValue: riComparator }
       ]
     }
   }
