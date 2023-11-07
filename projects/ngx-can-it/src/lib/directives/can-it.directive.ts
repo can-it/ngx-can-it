@@ -48,6 +48,7 @@ export class CanItDirective implements OnInit, OnDestroy {
       return;
     }
     
+    this.viewContainer.clear();
     this.viewContainer.createEmbeddedView(this.canItElse);
     this.showing = SHOWING_MODE.else;
   }
@@ -57,6 +58,7 @@ export class CanItDirective implements OnInit, OnDestroy {
       return;
     }
 
+    this.viewContainer.clear();
     this.viewContainer.createEmbeddedView(this.templateRef);
     this.showing = SHOWING_MODE.can;
     return;

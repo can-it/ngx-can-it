@@ -3,8 +3,8 @@ import { CanItDirective } from './directives/can-it.directive';
 import { CanItPipe } from './pipes/can-it.pipe';
 import { PermissionsStore } from './services/permissions-store.service';
 import { CanItService } from './services/can-it.service';
-import { ActionOperator, EqualActionOperator, EqualRiOperator, RiOperator } from '@can-it/core';
 import { ACTION_OPERATOR, RI_OPERATOR } from './constants/token';
+import { Comparator, ExactComparator } from '@can-it/core';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { ACTION_OPERATOR, RI_OPERATOR } from './constants/token';
 })
 export class NgxCanItModule {
   public static forNewScope(
-    actionOperator: ActionOperator = new EqualActionOperator(),
-    riOperator: RiOperator = new EqualRiOperator()
+    actionOperator: Comparator = new ExactComparator(),
+    riOperator: Comparator = new ExactComparator()
   ): ModuleWithProviders<NgxCanItModule> {
     return {
       ngModule: NgxCanItModule,

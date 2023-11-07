@@ -81,6 +81,10 @@ describe('CanItDirective', () => {
       canSubject$.next(true);
       fixture.detectChanges();
       expectContent(fixture, '#basic').toContain(DICTIONARY.basic.allow);
+
+      canSubject$.next(false);
+      fixture.detectChanges();
+      expectContent(fixture, '#basic').not.toContain(DICTIONARY.basic.allow);
     });
   })
 
@@ -105,6 +109,12 @@ describe('CanItDirective', () => {
       canSubject$.next(true);
       fixture.detectChanges();
       expectContent(fixture, '#usingElse').toContain(DICTIONARY.usingElse.allow);
+      expectContent(fixture, '#usingElse').not.toContain(DICTIONARY.usingElse.else);
+
+      canSubject$.next(false);
+      fixture.detectChanges();
+      expectContent(fixture, '#usingElse').not.toContain(DICTIONARY.usingElse.allow);
+      expectContent(fixture, '#usingElse').toContain(DICTIONARY.usingElse.else);
     });
   });
 });

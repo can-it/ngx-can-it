@@ -4,6 +4,7 @@ import { CanItService } from './can-it.service';
 import { PermissionsStore } from './permissions-store.service';
 import { Permission } from '../types/permission';
 import { ACTION_OPERATOR, RI_OPERATOR } from '../constants/token';
+import { ExactComparator } from '@can-it/core';
 
 describe('NgxCanItService', () => {
   let service: CanItService;
@@ -26,8 +27,8 @@ describe('NgxCanItService', () => {
         CanItService,
         PermissionsStore,
 
-        { provide: ACTION_OPERATOR, useValue: { isMatch: (a: string, b: string) => a === b } },
-        { provide: RI_OPERATOR, useValue: { isMatch: (a: string, b: string) => a === b } }
+        { provide: ACTION_OPERATOR, useValue: new ExactComparator() },
+        { provide: RI_OPERATOR, useValue: new ExactComparator() }
       ]
     });
     
