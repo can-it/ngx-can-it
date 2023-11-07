@@ -45,7 +45,7 @@ export class AppModule { }
 
 **Notice**:
 You can import this NgModule multiple times by using `NgxCanItModule.forNewScope()` and `NgxCanItModule.forChild()`.
-- `forNewScope()` creates a new permissions state. You have to use the `PermissionsStore` to set the permissions for this module, and all the directives, pipes, and components will use this state in their logic.
+- `forNewScope(actionComparator?: Comparator, riComparator?: Comparator)` creates a new permissions state and comparators. You have to use the `PermissionsStore` to set the permissions for this module, and all the directives, pipes, and components will use this state in their logic.
 - `forChild()` is used to register for submodules and lazy-loaded submodules when you want to reuse the parent permissions state module.
 
 2. Use the `PermissionsStore` to set the permissions for the current user:
