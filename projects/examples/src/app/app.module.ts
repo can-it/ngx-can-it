@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxCanItModule } from 'ngx-can-it';
-import { NestedRiOperator, RelationActionOperator } from '@can-it/core';
+import { ExactComparator, RelationComparator } from '@can-it/core';
 
 @NgModule({
   declarations: [
@@ -14,11 +14,11 @@ import { NestedRiOperator, RelationActionOperator } from '@can-it/core';
     BrowserModule,
     AppRoutingModule,
     NgxCanItModule.forNewScope(
-      new RelationActionOperator(
+      new RelationComparator(
         ['view', 'click'],
         { click: ['view'] } // if a user allow to perform "click", they will able to perform "view" action
       ),
-      new NestedRiOperator()
+      new ExactComparator()
     )
   ],
   providers: [],

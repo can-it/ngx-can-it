@@ -11,6 +11,7 @@ import { Observable, first, map } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'examples';
   deniedClick = false;
+  allowedView = true;
   allowedClick = true;
   currentPolicy$: Observable<PolicyState>;
 
@@ -23,10 +24,7 @@ export class AppComponent implements OnInit {
       allow: [
         ['click', 'documents'],
         ['view', 'documents']
-      ],
-      // deny: [
-      //   ['click', 'documents']
-      // ]
+      ]
     });
 
     this.currentPolicy$ = this.policyStore.get();
@@ -40,6 +38,17 @@ export class AppComponent implements OnInit {
         return;
       }
       this.policyStore.update({ ...state, allow: state.allow.filter(p => p[0] !== 'click') });
+    });
+  }
+  
+  toggleView() {
+    this.allowedView = !this.allowedView;
+    this.currentPolicy$.pipe(first()).subscribe(state => {
+      if (this.allowedView) {
+        this.policyStore.update({ ...state, allow: state.allow.concat([['view', 'documents']]) });
+        return;
+      }
+      this.policyStore.update({ ...state, allow: state.allow.filter(p => p[0] !== 'view') });
     });
   }
   
