@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxCanItModule } from 'ngx-can-it';
-import { ExactComparator, RelationComparator } from '@can-it/core';
-
+import { RelationComparator } from '@can-it/operators-relation';
 @NgModule({
   declarations: [
     AppComponent
@@ -13,12 +12,12 @@ import { ExactComparator, RelationComparator } from '@can-it/core';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxCanItModule.forNewScope(
-      new RelationComparator(
+    NgxCanItModule.forNewScope({
+      action: new RelationComparator(
         ['view', 'click'],
         { click: ['view'] } // if a user allow to perform "click", they will able to perform "view" action
-      ),
-      new ExactComparator()
+      )
+    }
     )
   ],
   providers: [],

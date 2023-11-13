@@ -32,6 +32,9 @@ dependencies:
   '@can-it/core':
     specifier: ^0.5.3
     version: 0.5.3
+  '@can-it/operators-relation':
+    specifier: ^0.0.4
+    version: 0.0.4
   ngx-can-it:
     specifier: link:dist\ngx-can-it
     version: link:dist/ngx-can-it
@@ -1703,6 +1706,12 @@ packages:
 
   /@can-it/operators-exact@0.0.1:
     resolution: {integrity: sha512-+CggUolWg6KAbRd4WYMzUjRFjIZ9nniKgmMlv2gDGFmpky/xQG8THI9sLadocE6CHIRH5npbpiyXrzSbgjlbMg==}
+    dependencies:
+      '@swc/helpers': 0.5.3
+    dev: false
+
+  /@can-it/operators-relation@0.0.4:
+    resolution: {integrity: sha512-X8OsLSVN/OGWIVpgetuQd/05zbJE+ll2gO2nGTkTJ1UhHYMrMVMosI28cnXAI/dOJ9tUs7Ize2zg/Ly/HfqxWA==}
     dependencies:
       '@swc/helpers': 0.5.3
     dev: false
