@@ -11,7 +11,9 @@
     "rbac",
     "acl",
     "user policy",
-    "angular"
+    "angular",
+    "can-it",
+    "can-it-utilization"
   ],
   "author": "Hai Le <haile.vnm@gmail.com>",
   "license": "MIT",
