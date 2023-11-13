@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { CanItService, PermissionsStore } from 'ngx-can-it';
+import { CanItService, PolicyStore } from 'ngx-can-it';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ export class ChildComponent implements OnInit, OnDestroy {
 
   constructor(
     private canIt: CanItService,
-    private policyStore: PermissionsStore
+    private policyStore: PolicyStore
   ) {}
 
   ngOnInit(): void {

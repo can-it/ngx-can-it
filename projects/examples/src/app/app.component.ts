@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PolicyState } from '@can-it/core';
-import { PermissionsStore } from 'ngx-can-it';
-import { Observable, first, map } from 'rxjs';
+import { PolicyStore } from 'ngx-can-it';
+import { Observable, first } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   currentPolicy$: Observable<PolicyState>;
 
   constructor(
-    private policyStore: PermissionsStore
+    private policyStore: PolicyStore
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
       this.policyStore.update({ ...state, allow: state.allow.filter(p => p[0] !== 'click') });
     });
   }
-  
+
   toggleView() {
     this.allowedView = !this.allowedView;
     this.currentPolicy$.pipe(first()).subscribe(state => {
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
       this.policyStore.update({ ...state, allow: state.allow.filter(p => p[0] !== 'view') });
     });
   }
-  
+
   toggleDenyClick() {
     this.deniedClick = !this.deniedClick;
     this.currentPolicy$.pipe(first()).subscribe(state => {
