@@ -17,8 +17,7 @@ import { RelationComparator } from '@can-it/operators-relation';
         ['view', 'click'],
         { click: ['view'] } // if a user allow to perform "click", they will able to perform "view" action
       )
-    }
-    )
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
