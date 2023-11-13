@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import PermissionsState from '../types/permissions-state';
+import PolicyState from '../types/policy-state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionsStore {
-  private state$ = new ReplaySubject<PermissionsState>(1);
+export class PolicyStore {
+  private state$ = new ReplaySubject<PolicyState>(1);
 
   get() {
     return this.state$.asObservable();
   }
 
-  update(permissions: PermissionsState) {
+  update(permissions: PolicyState) {
     this.state$.next(permissions);
   }
 }

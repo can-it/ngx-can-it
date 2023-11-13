@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CanItDirective } from './directives/can-it.directive';
 import { CanItPipe } from './pipes/can-it.pipe';
-import { PermissionsStore } from './services/permissions-store.service';
+import { PolicyStore } from './services/policy-store.service';
 import { CanItService } from './services/can-it.service';
 import { ACTION_COMPARATOR, RI_COMPARATOR } from './constants/token';
 import { Comparator } from '@can-it/core';
@@ -29,7 +29,7 @@ export class NgxCanItModule {
     return {
       ngModule: NgxCanItModule,
       providers: [
-        PermissionsStore,
+        PolicyStore,
 
         CanItService,
 

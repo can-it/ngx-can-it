@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CanItService } from './can-it.service';
-import { PermissionsStore } from './permissions-store.service';
+import { PolicyStore } from './policy-store.service';
 import { Permission } from '../types/permission';
 
 describe('NgxCanItService', () => {
   let service: CanItService;
-  let store: PermissionsStore;
+  let store: PolicyStore;
   const DENY_PERMISSIONS: Permission[] = [
     ['delete', 'user']
   ];
@@ -23,12 +23,12 @@ describe('NgxCanItService', () => {
     TestBed.configureTestingModule({
       providers: [
         CanItService,
-        PermissionsStore,
+        PolicyStore,
       ]
     });
 
     service = TestBed.inject(CanItService);
-    store = TestBed.inject(PermissionsStore);
+    store = TestBed.inject(PolicyStore);
     spyOn(executors, 'canSubscriber');
   });
 

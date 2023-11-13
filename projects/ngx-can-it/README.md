@@ -45,14 +45,14 @@ export class AppModule { }
 
 **Notice**:
 You can import this NgModule multiple times by using `NgxCanItModule.forNewScope()` and `NgxCanItModule.forChild()`.
-- `forNewScope(actionComparator?: Comparator, riComparator?: Comparator)` creates a new permissions state and comparators. You have to use the `PermissionsStore` to set the permissions for this module, and all the directives, pipes, and components will use this state in their logic.
+- `forNewScope(actionComparator?: Comparator, riComparator?: Comparator)` creates a new permissions state and comparators. You have to use the `PolicyStore` to set the permissions for this module, and all the directives, pipes, and components will use this state in their logic.
 - `forChild()` is used to register for submodules and lazy-loaded submodules when you want to reuse the parent permissions state module.
 
-2. Use the `PermissionsStore` to set the permissions for the current user:
+2. Use the `PolicyStore` to set the permissions for the current user:
 
 ```typescript
 import { Component } from '@angular/core';
-import { PermissionsStore } from 'ngx-can-it';
+import { PolicyStore } from 'ngx-can-it';
 
 @Component({
   selector: 'app-component',
@@ -62,10 +62,10 @@ import { PermissionsStore } from 'ngx-can-it';
   `,
 })
 export class AppComponent implements OnInit {
-  constructor(private permissionsStore: PermissionsStore) {}
+  constructor(private PolicyStore: PolicyStore) {}
 
   ngOnInit(): void {
-    this.permissionsStore.update({
+    this.PolicyStore.update({
       allow: [
         ['edit', 'products'],
         ['view', 'users'],
@@ -95,7 +95,7 @@ import { CanItService } from 'ngx-can-it';
     <ng-template #notAuthorized>
       You cannot access this content.
     </ng-template>
-  
+
 
     <!-- Using canIt pipe -->
     <button [class.inactive]="!(['create', 'products'] | canIt | async)">

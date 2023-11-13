@@ -1,6 +1,6 @@
 import { Permission } from './permission';
 
-export default interface PermissionsState {
+export default interface PolicyState {
   allow: Permission[];
   deny?: Permission[];
 }

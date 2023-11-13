@@ -1,33 +1,33 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PermissionsStore } from './permissions-store.service';
-import PermissionsState from '../types/permissions-state';
+import { PolicyStore } from './policy-store.service';
+import PolicyState from '../types/policy-state';
 
-describe('PermissionsStoreService', () => {
-  let service: PermissionsStore;
-  const executors = { get: (value: PermissionsState) => {} };
+describe('PolicyStore', () => {
+  let service: PolicyStore;
+  const executors = { get: (value: PolicyState) => {} };
 
-  const ALLOW_EDIT_USER: PermissionsState = {
+  const ALLOW_EDIT_USER: PolicyState = {
     allow: [
       ['edit', 'user']
     ]
   };
-  const EMPTY_PERMISSIONS: PermissionsState = {
+  const EMPTY_PERMISSIONS: PolicyState = {
     allow: []
   };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PermissionsStore]
+      providers: [PolicyStore]
     });
-    service = TestBed.inject(PermissionsStore);
+    service = TestBed.inject(PolicyStore);
     spyOn(executors, 'get');
   });
 
-  it('should have no intial state', () => {
+  it('should have no initialization state', () => {
     service.get().subscribe(executors.get);
     service.update(ALLOW_EDIT_USER);
-    
+
     expect(executors.get).toHaveBeenCalledOnceWith(ALLOW_EDIT_USER);
   });
 
@@ -35,7 +35,7 @@ describe('PermissionsStoreService', () => {
     service.get().subscribe(executors.get);
     service.update(ALLOW_EDIT_USER);
     service.update(EMPTY_PERMISSIONS);
-    
+
     expect(executors.get).toHaveBeenCalledWith(EMPTY_PERMISSIONS);
     expect(executors.get).toHaveBeenCalledWith(ALLOW_EDIT_USER);
   });

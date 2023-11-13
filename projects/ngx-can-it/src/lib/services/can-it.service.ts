@@ -1,5 +1,5 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { PermissionsStore } from './permissions-store.service';
+import { PolicyStore } from './policy-store.service';
 import { Observable, map } from 'rxjs';
 import { Request } from '../types/permission';
 import { ACTION_COMPARATOR, RI_COMPARATOR } from '../constants/token';
@@ -14,9 +14,9 @@ export class CanItService {
   constructor(
     @Inject(ACTION_COMPARATOR) @Optional() actionComparator: Comparator,
     @Inject(RI_COMPARATOR) @Optional() riComparator: Comparator,
-    permissionsStore: PermissionsStore,
+    policyStore: PolicyStore,
   ) {
-    this.canIt$ = permissionsStore.get().pipe(
+    this.canIt$ = policyStore.get().pipe(
       map(state => new CanIt(state, actionComparator, riComparator))
     );
   }
