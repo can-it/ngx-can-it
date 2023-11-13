@@ -4,8 +4,6 @@ import { CanItService } from './can-it.service';
 import { PermissionsStore } from './permissions-store.service';
 import { Permission } from '../types/permission';
 import { ACTION_COMPARATOR, RI_COMPARATOR } from '../constants/token';
-import { ExactComparator } from '@can-it/core';
-
 describe('NgxCanItService', () => {
   let service: CanItService;
   let store: PermissionsStore;
@@ -27,11 +25,11 @@ describe('NgxCanItService', () => {
         CanItService,
         PermissionsStore,
 
-        { provide: ACTION_COMPARATOR, useValue: new ExactComparator() },
-        { provide: RI_COMPARATOR, useValue: new ExactComparator() }
+        { provide: ACTION_COMPARATOR, useValue: undefined },
+        { provide: RI_COMPARATOR, useValue: undefined }
       ]
     });
-    
+
     service = TestBed.inject(CanItService);
     store = TestBed.inject(PermissionsStore);
     spyOn(executors, 'canSubscriber');
