@@ -1,9 +1,9 @@
 {
-  "name": "ngx-can-it",
+  "name": "@can-it/ngx",
   "version": "0.2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/can-it/ngx-can-it.git"
+    "url": "git+https://github.com/can-it/ngx.git"
   },
   "keywords": [
     "authorization",
@@ -18,9 +18,9 @@
   "author": "Hai Le <haile.vnm@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/can-it/ngx-can-it/issues"
+    "url": "https://github.com/can-it/ngx/issues"
   },
-  "homepage": "https://github.com/can-it/ngx-can-it#readme",
+  "homepage": "https://github.com/can-it/ngx#readme",
   "peerDependencies": {
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0"

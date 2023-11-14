@@ -1,6 +1,6 @@
-# NgxCanIt
+# @can-it/ngx (NgxCanIt)
 
-NgxCanIt is an Angular library that provides an easy and efficient way to implement authorization in your application. With NgxCanIt, you can quickly integrate complex authorization scenarios into your app in just a few minutes.
+An Angular library that provides an easy and efficient way to implement authorization in your application. With NgxCanIt, you can quickly integrate complex authorization scenarios into your app in just a few minutes.
 
 ## ⛔ Project Status
 The project is still under development, which means there will be frequent breaking changes in versions 0.x.x. Please wait until version 1.0.0 for a more stable release.
@@ -15,15 +15,15 @@ The project is still under development, which means there will be frequent break
 To install NgxCanIt, you can use npm, yarn, or pnpm. Run one of the following commands in your project directory:
 
 ```shell
-npm install ngx-can-it
+npm install @can-it/ngx
 ```
 
 ```shell
-yarn add ngx-can-it
+yarn add @can-it/ngx
 ```
 
 ```shell
-pnpm add ngx-can-it
+pnpm add @can-it/ngx
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ pnpm add ngx-can-it
 1. Import the `NgxCanItModule` into your Angular application's module:
 
 ```typescript
-import { NgxCanItModule } from 'ngx-can-it';
+import { NgxCanItModule } from '@can-it/ngx';
 
 @NgModule({
   imports: [
@@ -45,14 +45,14 @@ export class AppModule { }
 
 **Notice**:
 You can import this NgModule multiple times by using `NgxCanItModule.forNewScope()` and `NgxCanItModule.forChild()`.
-- `forNewScope(actionComparator?: Comparator, riComparator?: Comparator)` creates a new permissions state and comparators. You have to use the `PolicyStore` to set the permissions for this module, and all the directives, pipes, and components will use this state in their logic.
-- `forChild()` is used to register for submodules and lazy-loaded submodules when you want to reuse the parent permissions state module.
+- `forNewScope(actionComparator?: Comparator, riComparator?: Comparator)` creates a new Policy State and comparators. You have to use the `PolicyStore` to set the permissions for this module, and all the directives, pipes, and components will use this state in their logic.
+- `forChild()` is used to register for submodules and lazy-loaded submodules when you want to reuse the parent Policy State module.
 
 2. Use the `PolicyStore` to set the permissions for the current user:
 
 ```typescript
 import { Component } from '@angular/core';
-import { PolicyStore } from 'ngx-can-it';
+import { PolicyStore } from '@can-it/ngx';
 
 @Component({
   selector: 'app-component',
@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
 
 ```typescript
 import { Component } from '@angular/core';
-import { CanItService } from 'ngx-can-it';
+import { CanItService } from '@can-it/ngx';
 
 @Component({
   selector: 'app-products-component',
