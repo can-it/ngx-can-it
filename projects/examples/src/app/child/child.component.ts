@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
-import { CanItService, PolicyStore } from 'ngx-can-it';
+import { CanItService, PolicyStore } from '@can-it/ngx';
 import { Subscription } from 'rxjs';
 
 @Component({

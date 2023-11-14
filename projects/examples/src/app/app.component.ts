@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PolicyState } from '@can-it/core';
-import { PolicyStore } from 'ngx-can-it';
+import { PolicyStore } from '@can-it/ngx';
 import { Observable, first } from 'rxjs';
 
 @Component({

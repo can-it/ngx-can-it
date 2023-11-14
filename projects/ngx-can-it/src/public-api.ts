@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ngx-can-it
+ * Public API Surface of @can-it/ngx
  */
 
 export * from './lib/ngx-can-it.module';

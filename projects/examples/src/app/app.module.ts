@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxCanItModule } from 'ngx-can-it';
+import { NgxCanItModule } from '@can-it/ngx';
 import { RelationComparator } from '@can-it/operators-relation';
 @NgModule({
   declarations: [

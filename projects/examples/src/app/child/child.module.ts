@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ChildRoutingModule } from './child-routing.module';
 import { ChildComponent } from './child.component';
-import { NgxCanItModule } from 'ngx-can-it';
+import { NgxCanItModule } from '@can-it/ngx';
 
 @NgModule({
   declarations: [

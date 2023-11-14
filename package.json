@@ -19,8 +19,8 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@can-it/core": "^0.5.3",
+    "@can-it/ngx": "link:dist\\ngx-can-it",
     "@can-it/operators-relation": "^0.0.4",
-    "ngx-can-it": "link:dist\\ngx-can-it",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
